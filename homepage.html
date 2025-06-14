@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PersonalityHub - Test Kepribadian Online</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+     <!-- Section 1 -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="logo-circle"></div>
+                    <div class="logo-circle"></div>
+                    <div class="logo-circle"></div>
+                </div>
+                <span class="logo-text">PersonalityHub</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link active">Test Kepribadian</a>
+                <a href="#types" class="nav-link">Tipe Kepribadian</a>
+                <a href="#about" class="nav-link">Tentang Kami</a>
+                <a href="#resources" class="nav-link">Sumber Daya</a>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="language-btn">🌐</button>
+                <button class="login-btn">Masuk</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+     <!-- Section 2 -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Temukan Kepribadian Sejati Anda</h1>
+                <p>Ikuti test kepribadian komprehensif kami dan dapatkan wawasan mendalam tentang diri Anda</p>
+                
+                <div class="search-bar">
+                    <div class="search-item">
+                        <label>Test Yang Ingin Diambil</label>
+                        <select id="testType">
+                            <option>Pilih jenis test</option>
+                            <option value="basic">Test Kepribadian Dasar</option>
+                            <option value="advanced">Test Kepribadian Lanjutan</option>
+                            <option value="career">Test Kepribadian Karir</option>
+                        </select>
+                    </div>
+                    <div class="search-item">
+                        <label>Durasi Test</label>
+                        <select id="duration">
+                            <option>Pilih durasi</option>
+                            <option value="15">15 menit</option>
+                            <option value="30">30 menit</option>
+                            <option value="60">60 menit</option>
+                        </select>
+                    </div>
+                    <button class="search-btn" onclick="startTest()">Mulai Test</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Tests Section -->
+     <!-- Section 3 -->
+    <section class="popular-tests">
+        <div class="container">
+            <h2>Test Kepribadian Populer</h2>
+            
+            <div class="test-grid">
+                <div class="test-card">
+                    <div class="test-image">
+                        <div class="favorite-btn">★</div>
+                        <div class="test-preview">
+                            <div class="preview-icon">🧠</div>
+                        </div>
+                    </div>
+                    <div class="test-info">
+                        <h3>Test Kepribadian MBTI</h3>
+                        <p>Temukan 16 tipe kepribadian Anda</p>
+                        <div class="test-rating">
+                            <span class="rating">★ 4.9</span>
+                            <span class="duration">30 menit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <div class="test-image">
+                        <div class="favorite-btn">★</div>
+                        <div class="test-preview">
+                            <div class="preview-icon">💼</div>
+                        </div>
+                    </div>
+                    <div class="test-info">
+                        <h3>Test Kepribadian Karir</h3>
+                        <p>Cocokkan kepribadian dengan karir ideal</p>
+                        <div class="test-rating">
+                            <span class="rating">★ 4.8</span>
+                            <span class="duration">25 menit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <div class="test-image">
+                        <div class="favorite-btn">★</div>
+                        <div class="test-preview">
+                            <div class="preview-icon">❤️</div>
+                        </div>
+                    </div>
+                    <div class="test-info">
+                        <h3>Test Kepribadian Hubungan</h3>
+                        <p>Pahami pola hubungan interpersonal Anda</p>
+                        <div class="test-rating">
+                            <span class="rating">★ 4.7</span>
+                            <span class="duration">20 menit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <div class="test-image">
+                        <div class="favorite-btn">★</div>
+                        <div class="test-preview">
+                            <div class="preview-icon">🎯</div>
+                        </div>
+                    </div>
+                    <div class="test-info">
+                        <h3>Test Kekuatan Pribadi</h3>
+                        <p>Identifikasi kekuatan dan bakat alami</p>
+                        <div class="test-rating">
+                            <span class="rating">★ 4.9</span>
+                            <span class="duration">35 menit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <div class="test-image">
+                        <div class="favorite-btn">★</div>
+                        <div class="test-preview">
+                            <div class="preview-icon">🌟</div>
+                        </div>
+                    </div>
+                    <div class="test-info">
+                        <h3>Test Kepribadian Lengkap</h3>
+                        <p>Analisis komprehensif semua aspek</p>
+                        <div class="test-rating">
+                            <span class="rating">★ 5.0</span>
+                            <span class="duration">45 menit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Interface (Hidden by default) -->
+     <!-- Soal ketika test -->
+    <section id="test-interface" class="test-interface hidden">
+        <div class="test-container">
+            <div class="test-header">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="question-counter">Pertanyaan <span id="current-question">1</span> dari <span id="total-questions">10</span></span>
+            </div>
+            
+            <div class="test-content">
+                <h2 id="question-text">Anda sering membuat teman baru.</h2>
+                
+                <div class="answer-scale">
+                    <span class="scale-label left">Setuju</span>
+                    <div class="scale-options">
+                        <div class="scale-option" data-value="1"></div>
+                        <div class="scale-option" data-value="2"></div>
+                        <div class="scale-option" data-value="3"></div>
+                        <div class="scale-option" data-value="4"></div>
+                        <div class="scale-option" data-value="5"></div>
+                    </div>
+                    <span class="scale-label right">Tidak Setuju</span>
+                </div>
+                
+                <div class="test-navigation">
+                    <button id="prev-btn" class="nav-btn" disabled>Sebelumnya</button>
+                    <button id="next-btn" class="nav-btn">Selanjutnya</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section (Hidden by default) -->
+     <!-- jawaban untuk pertanyaan soal -->
+    <section id="results-section" class="results-section hidden">
+        <div class="results-container">
+            <div class="results-header">
+                <h2>Hasil Test Kepribadian Anda</h2>
+                <div class="personality-type">
+                    <div class="type-badge" id="personality-badge">ENFP</div>
+                    <h3 id="personality-title">The Campaigner</h3>
+                </div>
+            </div>
+            
+            <div class="results-content">
+                <div class="trait-breakdown">
+                    <h4>Analisis Trait Kepribadian</h4>
+                    <div class="trait-bars">
+                        <div class="trait-bar">
+                            <span class="trait-name">Ekstrovert</span>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 75%"></div>
+                            </div>
+                            <span class="trait-percentage">75%</span>
+                        </div>
+                        <div class="trait-bar">
+                            <span class="trait-name">Intuitif</span>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 82%"></div>
+                            </div>
+                            <span class="trait-percentage">82%</span>
+                        </div>
+                        <div class="trait-bar">
+                            <span class="trait-name">Perasaan</span>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 68%"></div>
+                            </div>
+                            <span class="trait-percentage">68%</span>
+                        </div>
+                        <div class="trait-bar">
+                            <span class="trait-name">Perseptif</span>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 71%"></div>
+                            </div>
+                            <span class="trait-percentage">71%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="personality-description">
+                    <h4>Deskripsi Kepribadian</h4>
+                    <p>ENFP adalah pribadi yang antusias, kreatif, dan sosial. Mereka cenderung melihat kemungkinan-kemungkinan dalam segala hal dan sangat tertarik dengan orang lain. ENFP memiliki energi tinggi dan sering menjadi pusat perhatian dalam kelompok sosial.</p>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="downloadResults()">Download Hasil</button>
+                    <button class="btn-secondary" onclick="shareResults()">Bagikan</button>
+                    <button class="btn-secondary" onclick="restartTest()">Test Lagi</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+     <!-- section 4 -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>Tentang PersonalityHub</h2>
+                    <p>PersonalityHub adalah platform test kepribadian online terdepan yang membantu jutaan orang memahami diri mereka dengan lebih baik. Kami menggunakan metodologi ilmiah yang telah terbukti untuk memberikan hasil yang akurat dan bermakna.</p>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">🔬</div>
+                            <div class="feature-text">
+                                <h4>Berbasis Sains</h4>
+                                <p>Test kami dikembangkan berdasarkan penelitian psikologi terkini</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">📊</div>
+                            <div class="feature-text">
+                                <h4>Hasil Akurat</h4>
+                                <p>Analisis mendalam dengan tingkat akurasi tinggi</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">🌟</div>
+                            <div class="feature-text">
+                                <h4>Pengalaman Personal</h4>
+                                <p>Setiap hasil disesuaikan dengan profil unik Anda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">2M+</div>
+                        <div class="stat-label">Pengguna Aktif</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Jenis Test</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Kepuasan User</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Dukungan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+     <!-- Section 5 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <div class="logo-circle"></div>
+                            <div class="logo-circle"></div>
+                            <div class="logo-circle"></div>
+                        </div>
+                        <span class="logo-text">PersonalityHub</span>
+                    </div>
+                    <p>Platform test kepribadian terpercaya untuk membantu Anda memahami diri dengan lebih baik.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Test Kepribadian</h4>
+                    <ul>
+                        <li><a href="#">Test MBTI</a></li>
+                        <li><a href="#">Test Karir</a></li>
+                        <li><a href="#">Test Hubungan</a></li>
+                        <li><a href="#">Test Kekuatan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Tim</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Dukungan</h4>
+                    <ul>
+                        <li><a href="#">Pusat Bantuan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 PersonalityHub. Semua hak dilindungi.</p>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">🐦</a>
+                    <a href="#">📷</a>
+                    <a href="#">💼</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
