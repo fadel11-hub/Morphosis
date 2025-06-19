@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morphosis Questionnaire</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .question-container {
+            margin-bottom: 30px;
+        }
+        .category-title {
+            background-color: #0d6efd;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .question-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0d6efd;
+        }
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Morphosis Questionnaire</h1>
+        
+        <form method="POST" action="{{ url_for('handle_result') }}">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    Informasi Pribadi
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nama Lengkap*</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email*</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="birthdate" class="form-label">Tanggal Lahir*</label>
+                        <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <h3 class="category-title">Organizer (Penyusun)</h3>
+                
+                <!-- Question 1 -->
+                <div class="question-item">
+                    <p class="question-text">1. Saya merasa nyaman bekerja dengan angka dan data</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q1" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                
+                <!-- Question 2 -->
+                <div class="question-item">
+                    <p class="question-text">2. Saya jarang melupakan hal-hal kecil dalam aktivitas saya</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q2" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                
+                <!-- Question 3 -->
+                <div class="question-item">
+                    <p class="question-text">3. Saya cenderung mengikuti aturan secara konsisten</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q3" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                
+                <!-- Question 4 -->
+                <div class="question-item">
+                    <p class="question-text">4. Saya menyusun prioritas kerja secara logis dan runut</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q4" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                
+                <!-- Question 5 -->
+                <div class="question-item">
+                    <p class="question-text">5. Saya merasa tenang jika segala sesuatu terorganisir</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q5" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                
+                <!-- Question 6 -->
+                <div class="question-item">
+                    <p class="question-text">6. Saya fokus menyelesaikan tugas satu per satu</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q6" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                
+                <!-- Question 7 -->
+                <div class="question-item">
+                    <p class="question-text">7. Saya lebih suka rencana pasti daripada improvisasi</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q7" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <h3 class="category-title">Empath (Empati)</h3>
+                
+                <!-- Questions 8-15 -->
+                {% set empath_questions = [
+                    "8. Saya bisa memahami perasaan orang tanpa mereka mengatakannya",
+                    "9. Saya sering terdorong untuk membantu orang lain secara emosional",
+                    "10. Saya merasakan perubahan suasana hati di lingkungan saya",
+                    "11. Saya mengikuti intuisi dalam memilih keputusan penting",
+                    "12. Saya mudah terbawa suasana film, cerita, atau musik",
+                    "13. Saya peka terhadap ketidakadilan atau penderitaan orang lain",
+                    "14. Saya sering menenangkan orang lain saat mereka gelisah",
+                    "15. Saya menggunakan perasaan dalam menilai situasi sosial"
+                ] %}
+                
+                {% for question in empath_questions %}
+                <div class="question-item">
+                    <p class="question-text">{{ question }}</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q{{ loop.index + 7 }}" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="question-container">
+                <h3 class="category-title">Analyst (Analitis)</h3>
+                
+                <!-- Questions 16-23 -->
+                {% set analyst_questions = [
+                    "16. Saya tertarik pada pola dan hubungan sebab-akibat",
+                    "17. Saya menganalisis data sebelum mengambil keputusan",
+                    "18. Saya senang membaca grafik, angka, atau statistik",
+                    "19. Saya menggunakan logika dalam menyelesaikan konflik",
+                    "20. Saya menulis atau berbicara dengan struktur yang jelas",
+                    "21. Saya menilai argumen berdasarkan logika, bukan emosi",
+                    "22. Saya merancang solusi berdasarkan proses yang sistematis",
+                    "23. Saya cenderung skeptis terhadap informasi yang tidak terverifikasi"
+                ] %}
+                
+                {% for question in analyst_questions %}
+                <div class="question-item">
+                    <p class="question-text">{{ question }}</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q{{ loop.index + 15 }}" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="question-container">
+                <h3 class="category-title">Innovator (Inovator)</h3>
+                
+                <!-- Questions 24-31 -->
+                {% set innovator_questions = [
+                    "24. Saya sering membayangkan skenario yang tidak biasa",
+                    "25. Saya menyukai kegiatan mencipta seperti menulis, menggambar, atau bermain musik",
+                    "26. Saya bisa melihat ide besar dari hal-hal kecil",
+                    "27. Saya berani mencoba pendekatan yang tidak biasa",
+                    "28. Saya mengandalkan intuisi visual saat menyusun ide",
+                    "29. Saya sering mendapatkan ide 'tiba-tiba' tanpa direncanakan",
+                    "30. Saya menyukai kebebasan berpikir dan berekspresi",
+                    "31. Saya bisa menghubungkan ide dari berbagai bidang"
+                ] %}
+                
+                {% for question in innovator_questions %}
+                <div class="question-item">
+                    <p class="question-text">{{ question }}</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q{{ loop.index + 23 }}" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="question-container">
+                <h3 class="category-title">Doer (Pelaku)</h3>
+                
+                <!-- Questions 32-42 -->
+                {% set doer_questions = [
+                    "32. Saya cepat mempelajari gerakan atau teknik baru",
+                    "33. Saya bisa bekerja dengan tangan atau alat dengan presisi",
+                    "34. Saya senang aktivitas yang melibatkan gerakan tubuh",
+                    "35. Saya tidak canggung saat mengerjakan tugas fisik",
+                    "36. Saya belajar lebih baik melalui praktik daripada teori",
+                    "37. Saya menikmati merakit, membangun, atau memperbaiki sesuatu",
+                    "38. Saya bisa multitasking secara fisik tanpa kehilangan koordinasi",
+                    "39. Saya menyukai pekerjaan lapangan dibanding pekerjaan meja",
+                    "40. Saya menyukai pekerjaan yang menuntut ketelitian tinggi",
+                    "41. Saya lebih suka demonstrasi daripada penjelasan tertulis",
+                    "42. Saya merasa puas ketika menyelesaikan pekerjaan fisik"
+                ] %}
+                
+                {% for question in doer_questions %}
+                <div class="question-item">
+                    <p class="question-text">{{ question }}</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                        {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                            <input type="radio" name="q{{ loop.index + 31 }}" value="{{ i }}" required> {{ i }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-lg py-3">Kirim Jawaban</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Client-side validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            let unanswered = [];
+            
+            // Check personal info
+            if(!document.getElementById('name').value.trim()) {
+                unanswered.push("Nama lengkap harus diisi");
+            }
+            if(!document.getElementById('email').value.trim()) {
+                unanswered.push("Email harus diisi");
+            }
+            if(!document.getElementById('birthdate').value) {
+                unanswered.push("Tanggal lahir harus diisi");
+            }
+            
+            // Check all questions
+            for(let i = 1; i <= 42; i++) {
+                if(!document.querySelector(`input[name="q${i}"]:checked`)) {
+                    unanswered.push(`Pertanyaan ${i} belum dijawab`);
+                }
+            }
+            
+            if(unanswered.length > 0) {
+                e.preventDefault();
+                alert("Silakan lengkapi:\n" + unanswered.slice(0, 5).join("\n") + 
+                    (unanswered.length > 5 ? "\n...dan " + (unanswered.length - 5) + " lainnya" : ""));
+                
+                // Scroll to first error
+                if(unanswered[0].includes("Pertanyaan")) {
+                    const qNum = unanswered[0].match(/\d+/)[0];
+                    document.querySelector(`input[name="q${qNum}"]`).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                } else {
+                    document.getElementById(unanswered[0].split(" ")[0].toLowerCase()).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

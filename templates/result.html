@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Morphosis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Hasil Tes Morphosis</h1>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                Informasi Pribadi
+            </div>
+            <div class="card-body">
+                <p><strong>Nama:</strong> {{ name }}</p>
+                <p><strong>Email:</strong> {{ email }}</p>
+                <p><strong>Tanggal Lahir:</strong> {{ birthdate }}</p>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                Hasil Kategori
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="/static/images/chart.png" alt="Chart Hasil" class="img-fluid">
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            {% for category, score in category_scores.items() %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ category }}
+                                <span class="badge bg-primary rounded-pill">{{ score }} ({{ interpretations[category] }})</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                Interpretasi Warna Mastermind
+            </div>
+            <div class="card-body">
+                <h4>{{ color_interpretation }}</h4>
+                <p class="mt-3">
+                    {% if color_interpretation == "Mastermind (Ungu)" %}
+                    Anda memiliki beberapa area yang sangat dominan dan beberapa yang dominan. Ini menunjukkan kemampuan luar biasa di berbagai bidang.
+                    {% elif color_interpretation == "Multi-Brain Master (Biru)" %}
+                    Anda memiliki beberapa area yang sangat dominan dan banyak yang dominan. Anda adalah pemikir multi-dimensi.
+                    {% elif color_interpretation == "Balanced Mind (Hijau Tua)" %}
+                    Anda memiliki keseimbangan yang baik antara berbagai kemampuan dengan beberapa area yang menonjol.
+                    {% elif color_interpretation == "Dual Strength (Hijau Muda)" %}
+                    Anda memiliki dua area yang sangat kuat dengan beberapa area pendukung.
+                    {% elif color_interpretation == "Single Focus (Kuning)" %}
+                    Anda memiliki satu area yang sangat menonjol dengan fokus yang jelas.
+                    {% else %}
+                    Potensi Anda belum sepenuhnya terlihat. Mungkin perlu eksplorasi lebih lanjut.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        
+        <div class="d-grid gap-2">
+            <a href="{{ pdf_path }}" class="btn btn-primary btn-lg" download>Unduh Hasil (PDF)</a>
+            <a href="/" class="btn btn-secondary btn-lg">Kembali ke Halaman Utama</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
