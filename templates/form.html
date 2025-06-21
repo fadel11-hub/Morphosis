@@ -180,6 +180,8 @@
             <div class="question-container">
                 <h3 class="category-title">Empath (Empati)</h3>
                 
+                
+
                 <!-- Questions 8-15 -->
                 {% set empath_questions = [
                     "8. Saya bisa memahami perasaan orang tanpa mereka mengatakannya",
@@ -192,7 +194,7 @@
                     "15. Saya menggunakan perasaan dalam menilai situasi sosial"
                 ] %}
                 
-                {% for question in empath_questions %}
+                <!-- {% for question in empath_questions %}
                 <div class="question-item">
                     <p class="question-text">{{ question }}</p>
                     <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
@@ -205,6 +207,27 @@
                     <div class="scale-labels">
                         <span>Sangat Tidak Sesuai</span>
                         <span>Sangat Sesuai</span>
+                    </div>
+                </div>
+                {% endfor %} -->
+
+
+                {% set base_index = 8 %}
+
+                {% for question in empath_questions %}
+                {% set question_num = base_index + loop.index0 %}
+                <div class="question-item">
+                    <p class="question-text">{{ question }}</p>
+                    <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                    {% for i in range(1, 6) %}
+                        <label class="btn btn-outline-primary">
+                        <input type="radio" name="q{{ question_num }}" value="{{ i }}" required> {{ i }}
+                        </label>
+                    {% endfor %}
+                    </div>
+                    <div class="scale-labels">
+                        <span>Sangat Tidak Sesuai</span>
+                        <span style="float: right;">Sangat Sesuai</span>
                     </div>
                 </div>
                 {% endfor %}
@@ -225,19 +248,22 @@
                     "23. Saya cenderung skeptis terhadap informasi yang tidak terverifikasi"
                 ] %}
                 
+                {% set base_index = 16 %}
+
                 {% for question in analyst_questions %}
+                {% set question_num = base_index + loop.index0 %}
                 <div class="question-item">
                     <p class="question-text">{{ question }}</p>
                     <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                        {% for i in range(1, 6) %}
+                    {% for i in range(1, 6) %}
                         <label class="btn btn-outline-primary">
-                            <input type="radio" name="q{{ loop.index + 15 }}" value="{{ i }}" required> {{ i }}
+                        <input type="radio" name="q{{ question_num }}" value="{{ i }}" required> {{ i }}
                         </label>
-                        {% endfor %}
+                    {% endfor %}
                     </div>
                     <div class="scale-labels">
                         <span>Sangat Tidak Sesuai</span>
-                        <span>Sangat Sesuai</span>
+                        <span style="float: right;">Sangat Sesuai</span>
                     </div>
                 </div>
                 {% endfor %}
@@ -258,22 +284,28 @@
                     "31. Saya bisa menghubungkan ide dari berbagai bidang"
                 ] %}
                 
+
+                 {% set base_index = 24 %}
+
                 {% for question in innovator_questions %}
+                {% set question_num = base_index + loop.index0 %}
                 <div class="question-item">
                     <p class="question-text">{{ question }}</p>
                     <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                        {% for i in range(1, 6) %}
+                    {% for i in range(1, 6) %}
                         <label class="btn btn-outline-primary">
-                            <input type="radio" name="q{{ loop.index + 23 }}" value="{{ i }}" required> {{ i }}
+                        <input type="radio" name="q{{ question_num }}" value="{{ i }}" required> {{ i }}
                         </label>
-                        {% endfor %}
+                    {% endfor %}
                     </div>
                     <div class="scale-labels">
                         <span>Sangat Tidak Sesuai</span>
-                        <span>Sangat Sesuai</span>
+                        <span style="float: right;">Sangat Sesuai</span>
                     </div>
                 </div>
                 {% endfor %}
+
+                
             </div>
             
             <div class="question-container">
@@ -294,19 +326,21 @@
                     "42. Saya merasa puas ketika menyelesaikan pekerjaan fisik"
                 ] %}
                 
+                {% set base_index = 32 %}
                 {% for question in doer_questions %}
+                {% set question_num = base_index + loop.index0 %}
                 <div class="question-item">
                     <p class="question-text">{{ question }}</p>
                     <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                        {% for i in range(1, 6) %}
+                    {% for i in range(1, 6) %}
                         <label class="btn btn-outline-primary">
-                            <input type="radio" name="q{{ loop.index + 31 }}" value="{{ i }}" required> {{ i }}
+                        <input type="radio" name="q{{ question_num }}" value="{{ i }}" required> {{ i }}
                         </label>
-                        {% endfor %}
+                    {% endfor %}
                     </div>
                     <div class="scale-labels">
                         <span>Sangat Tidak Sesuai</span>
-                        <span>Sangat Sesuai</span>
+                        <span style="float: right;">Sangat Sesuai</span>
                     </div>
                 </div>
                 {% endfor %}

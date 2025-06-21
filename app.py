@@ -30,7 +30,7 @@ def home():
 
 @app.route('/form')
 def form():
-    return render_template('main.html')
+    return render_template('form.html')
 
 
 # @app.route('/', methods=['GET'])
