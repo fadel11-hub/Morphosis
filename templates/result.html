@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hasil Morphosis</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
+    <link rel="stylesheet" href="/static/css/result.css">
+    </head>
 <body>
     <div class="container mt-4">
         <h1 class="text-center mb-4">Hasil Tes Morphosis</h1>
@@ -34,9 +33,24 @@
                     <div class="col-md-6">
                         <ul class="list-group">
                             {% for category, score in category_scores.items() %}
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{ category }}
-                                <span class="badge bg-primary rounded-pill">{{ score }} ({{ interpretations[category] }})</span>
+                            <li class="list-group-item"> {# Kelas Bootstrap d-flex justify-content-between align-items-center dihapus #}
+                                <span>{{ category }}</span>
+                                <div class="progress-bar-container">
+                                    {# Menambahkan kelas dinamis ke progress-bar berdasarkan interpretasi dominansi #}
+                                    <div class="progress-bar 
+                                        {% if interpretations[category] == 'Tidak Dominan' %}non-dominant
+                                        {% elif interpretations[category] == 'Cukup Dominan' %}moderately-dominant
+                                        {% elif interpretations[category] == 'Dominan' %}highly-dominant
+                                        {% elif interpretations[category] == 'Sangat Dominan' %}very-highly-dominant
+                                        {% else %}default-dominant{% endif %}" 
+                                        style="width: {{ score|float * 4 }}%;"> 
+                                        {# Asumsi max score 25, sesuaikan faktor pengali jika perlu #}
+                                    </div>
+                                </div>
+                                <span class="score-display">
+                                    <span class="score-value">{{ score }}</span>
+                                    <span class="dominance-status">({{ interpretations[category] }})</span>
+                                </span>
                             </li>
                             {% endfor %}
                         </ul>
@@ -75,6 +89,5 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    </body>
 </html>

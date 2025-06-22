@@ -1,0 +1,259 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #8c8cff; /* A purple-ish background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 800px; /* Adjust as needed */
+    width: 100%;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* For the progress bar */
+    margin-bottom: 20px;
+}
+
+.card-header.bg-primary {
+    background-color: #007bff !important; /* Bootstrap primary blue */
+    color: white;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+/* Specific styling for the questionnaire card */
+.questionnaire-card {
+    position: relative;
+    padding: 30px;
+}
+
+.progress-container {
+    width: calc(100% - 60px); /* Card width - padding */
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: -30px 30px 20px 30px; /* Negative margin to pull it up into the header area, plus side padding */
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 10%; /* Example: 10% for question 1 of 10 */
+    background-color: #28a745; /* Green color for progress */
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+}
+
+.question-status {
+    text-align: left;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+    padding: 0 30px;
+}
+
+.question-text {
+    font-size: 1.1em; /* Adjusted to be smaller for individual questions */
+    font-weight: normal;
+    text-align: left;
+    margin-bottom: 15px;
+    color: #333;
+    padding: 0;
+}
+
+.rating-scale {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 15px; /* Space between circles */
+}
+
+.rating-scale .label-text {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #007bff; /* Setuju color */
+    flex-basis: 100px; /* Fixed width for labels */
+    text-align: right;
+}
+
+.rating-scale .label-text.disagree {
+    color: #dc3545; /* Tidak Setuju color */
+    text-align: left;
+}
+
+
+.rating-circle {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: #f8f9fa; /* Light background for circles */
+}
+
+.rating-circle.selected {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px 30px 30px; /* Add bottom padding */
+    gap: 20px;
+}
+
+.btn-nav {
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    flex-grow: 1; /* Allow buttons to grow */
+    max-width: 200px; /* Max width for buttons */
+}
+
+.btn-previous {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    color: #495057;
+}
+
+.btn-previous:hover {
+    background-color: #dee2e6;
+}
+
+.btn-next {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    color: white;
+}
+
+.btn-next:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* General form styling for the initial personal info section */
+.form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+/* Styles for the Morphosis Questionnaire parts */
+.question-container {
+    display: none; /* Hidden by default, will be shown by JS */
+    /* margin-top: 30px; -- removed to allow JS to control display */
+}
+
+.question-container.active {
+    display: block; /* Show the active container */
+}
+
+.category-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4CAF50; /* Green for category titles */
+    text-align: center;
+    margin-bottom: 25px;
+    padding-top: 20px;
+}
+
+.question-item {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.question-item .question-text {
+    font-size: 1.1em;
+    font-weight: normal;
+    text-align: left;
+    margin-bottom: 15px;
+    color: #333;
+    padding: 0; /* Remove padding from specific question-text within item */
+}
+
+.btn-group-toggle .btn {
+    flex: 1; /* Make buttons take equal width */
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 10px 0;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    color: #495057;
+}
+
+.btn-group-toggle .btn:hover {
+    background-color: #dee2e6;
+}
+
+.btn-group-toggle input[type="radio"]:checked + label {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.scale-labels span:first-child {
+    color: #dc3545; /* Sangat Tidak Sesuai */
+}
+
+.scale-labels span:last-child {
+    color: #28a745; /* Sangat Sesuai */
+}
+
+.d-grid.gap-2 {
+    margin-top: 30px;
+}
+
+.btn-lg.py-3 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 1.25em;
+    border-radius: 10px;
+}

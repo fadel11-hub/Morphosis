@@ -1,0 +1,419 @@
+/* Import font Poppins jika tersedia, atau gunakan sans-serif default */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Latar belakang gradien seperti pada gambar */
+    background: linear-gradient(135deg, #7b4397, #dc2430);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Untuk menempatkan navbar di atas dan konten di bawahnya */
+    align-items: center;
+    min-height: 100vh;
+    color: #333; /* Warna teks default */
+}
+
+/* --- Navbar (Optional: Jika Anda ingin menambahkan navbar seperti di gambar PersonalityHub) --- */
+/* Jika Anda menambahkan navbar di HTML, uncomment atau tambahkan kode navbar di sini. */
+/* Jika tidak, bagian ini tidak akan berpengaruh karena tidak ada elemen .navbar di HTML Anda. */
+/* Baris 46 ada di sekitar bagian ini di kode CSS yang sebelumnya saya berikan. */
+/* Pastikan tidak ada karakter aneh di sekitar sini. */
+.navbar {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparan */
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar-left .logo {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.navbar-right a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 0.95em;
+    padding: 5px 0;
+    position: relative;
+}
+
+.navbar-right a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #fff;
+    transition: width 0.3s ease;
+}
+
+.navbar-right a:hover::after {
+    width: 100%;
+    left: 0;
+    background: #fff;
+}
+
+.navbar-right .icon-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.navbar-right .nav-icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(100%); /* Membuat ikon hitam menjadi putih */
+}
+
+.navbar-right .login-button {
+    background-color: #dc2430; /* Merah dari gambar */
+    padding: 8px 20px;
+    border-radius: 20px;
+    margin-left: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-right .login-button:hover {
+    background-color: #c01e2b;
+}
+
+.navbar-right .login-button::after {
+    content: none;
+}
+/* --- End Navbar --- */
+
+
+/* Mengadaptasi container utama */
+.container {
+    margin-top: 80px; /* Memberi ruang jika ada navbar fixed, sesuaikan jika tidak ada */
+    width: 90%;
+    max-width: 800px; /* Lebar maksimum seperti di gambar */
+    padding-bottom: 40px; /* Padding bawah untuk tombol */
+}
+
+/* Judul Utama */
+h1.text-center {
+    color: #fff; /* Warna putih untuk judul utama di atas card */
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 40px; /* Jarak yang lebih besar */
+}
+
+/* Gaya Card */
+.card {
+    background-color: #ffffff;
+    border-radius: 15px; /* Sudut lebih membulat */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan lebih kuat */
+    margin-bottom: 25px; /* Jarak antar card */
+    border: none; /* Hilangkan border bawaan bootstrap */
+    padding: 20px 30px; /* Padding dalam card, sesuaikan */
+}
+
+.card-header {
+    background-color: transparent !important; /* Hilangkan warna header bawaan */
+    border-bottom: none !important; /* Hilangkan border bawah header header bawaan */
+    color: #333 !important; /* Warna teks header */
+    font-size: 1.5em;
+    font-weight: 600;
+    text-align: left; /* Sesuaikan dengan gambar */
+    padding: 15px 0 10px 0; /* Padding header */
+}
+
+.card-body {
+    padding: 10px 0; /* Padding body, sesuaikan */
+    text-align: left; /* Teks dalam body rata kiri */
+}
+
+/* Gaya untuk "Informasi Pribadi" */
+/* Tetap seperti sebelumnya */
+
+
+/* --- Modifikasi untuk Hasil Kategori (Bar Progres dan Dominansi) --- */
+.card-body .row {
+    align-items: center;
+}
+
+.card-body .row .col-md-6:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Jarak antara chart dan list pada tampilan mobile */
+}
+
+.card-body .row .col-md-6:first-child img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.list-group {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-group-item {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 10px 0;
+    display: flex; /* Penting untuk menata elemen dalam baris */
+    justify-content: space-between; /* Memberi ruang di antara elemen utama */
+    align-items: center;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 10px; /* Jarak antar item daftar */
+}
+
+.list-group-item span:first-child { /* Nama Kategori */
+    flex-basis: 25%; /* Memberi ruang untuk nama */
+    text-align: left;
+    font-weight: 500;
+    color: #555;
+    font-size: 1em;
+}
+
+/* Container untuk bar progres */
+.progress-bar-container {
+    flex-grow: 1; /* Ambil sisa ruang */
+    height: 12px; /* Tinggi bar */
+    background-color: #e0e0e0; /* Warna latar belakang bar (abu-abu muda) */
+    border-radius: 6px; /* Sudut membulat */
+    margin: 0 15px; /* Jarak dari nama dan skor */
+    overflow: hidden; /* Penting agar bar di dalamnya tidak keluar */
+}
+
+/* Bar progres actual */
+.progress-bar {
+    height: 100%;
+    /* Gradien default atau fallback jika kelas dominansi tidak cocok */
+    background: linear-gradient(to right, #a0e0a0, #60b060); /* Default hijau */
+    border-radius: 6px;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out; /* Animasi */
+}
+
+/* Warna bar progres berdasarkan kelas dominansi */
+.progress-bar.non-dominant {
+    background: linear-gradient(to right, #c7c7c7, #9e9e9e); /* Abu-abu untuk Tidak Dominan */
+}
+
+.progress-bar.moderately-dominant {
+    background: linear-gradient(to right, #ffe699, #ffcc00); /* Kuning/Oranye untuk Cukup Dominan */
+}
+
+.progress-bar.highly-dominant {
+    background: linear-gradient(to right, #80d9d9, #00aced); /* Biru terang untuk Dominan */
+}
+
+.progress-bar.very-highly-dominant {
+    background: linear-gradient(to right, #f7d1d8, #d84358); /* Pink/Merah untuk Sangat Dominan */
+}
+
+.progress-bar.default-dominant { /* fallback jika interpretasi tidak cocok */
+    background: linear-gradient(to right, #a0e0a0, #60b060);
+}
+
+
+/* Styling untuk tampilan skor dan status dominansi */
+.score-display {
+    width: 180px; /* Berikan lebar tetap untuk menampung skor dan teks */
+    text-align: right;
+    display: flex;
+    flex-direction: column; /* Tumpuk skor dan status */
+    align-items: flex-end; /* Rata kanan */
+    font-size: 0.95em;
+    color: #333;
+}
+
+.score-display .score-value {
+    font-weight: bold;
+    font-size: 1.1em; /* Ukuran skor numerik sedikit lebih besar */
+    color: #007bff; /* Warna biru untuk skor, mirip dengan gambar Anda */
+    margin-bottom: 2px; /* Jarak kecil dari teks dominansi */
+}
+
+.score-display .dominance-status {
+    font-size: 0.9em; /* Ukuran teks dominansi sedikit lebih kecil */
+    color: #6c757d; /* Warna abu-abu untuk teks dominansi */
+    white-space: nowrap; /* Pastikan teks tidak memecah baris */
+}
+
+/* Sembunyikan badge bawaan dari struktur HTML lama */
+.list-group-item .badge.bg-primary {
+    display: none;
+}
+
+
+/* Gaya untuk Interpretasi Warna Mastermind */
+.card-body h4 {
+    color: #333;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.card-body p.mt-3 {
+    line-height: 1.7;
+    color: #555;
+    text-align: justify;
+}
+
+/* Gaya tombol */
+.d-grid.gap-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+}
+
+.btn.btn-primary {
+    background-color: #e64a61;
+    color: #fff;
+    border-color: #e64a61;
+}
+
+.btn.btn-primary:hover {
+    background-color: #d23a50;
+    border-color: #d23a50;
+    box-shadow: 0 5px 15px rgba(230, 74, 97, 0.3);
+}
+
+.btn.btn-secondary {
+    background-color: #f0f2f5;
+    color: #666;
+    border-color: #e0e0e0;
+}
+
+.btn.btn-secondary:hover {
+    background-color: #e0e2e5;
+    color: #333;
+    border-color: #d0d0d0;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+        margin-top: 80px;
+    }
+
+    h1.text-center {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        padding: 15px 20px;
+    }
+
+    .card-header {
+        font-size: 1.3em;
+        padding: 10px 0;
+    }
+
+    .card-body .row {
+        flex-direction: column;
+    }
+
+    .card-body .row .col-md-6 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .list-group-item span:first-child {
+        flex-basis: auto;
+        margin-bottom: 5px;
+    }
+
+    .progress-bar-container {
+        width: 100%;
+        margin: 0;
+    }
+
+    .score-display {
+        width: 100%;
+        flex-direction: row; /* Kembali ke baris pada layar kecil */
+        justify-content: flex-start; /* Rata kiri */
+        align-items: center;
+        margin-top: 5px;
+    }
+    .score-display .score-value {
+        margin-right: 5px;
+    }
+
+    .d-grid.gap-2 {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 480px) {
+    h1.text-center {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    .card {
+        padding: 10px 15px;
+        border-radius: 10px;
+    }
+
+    .card-header {
+        font-size: 1.2em;
+    }
+
+    .list-group-item {
+        font-size: 0.95em;
+    }
+
+    .progress-bar-container {
+        height: 8px;
+    }
+
+    .score-display {
+        font-size: 0.9em;
+    }
+    .score-display .score-value {
+        font-size: 1em;
+    }
+    .score-display .dominance-status {
+        font-size: 0.85em;
+    }
+}
