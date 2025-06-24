@@ -4,7 +4,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     /* Latar belakang gradien seperti pada gambar */
-    background: linear-gradient(135deg, #7b4397, #dc2430);
+    background-color: #8c8cff; /* A purple-ish background */
     margin: 0;
     padding: 0;
     display: flex;

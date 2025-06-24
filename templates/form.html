@@ -38,23 +38,51 @@
             </div>
 
                 <!-- Pendahuluan Tes Morphosis -->
-            <div class=" mb-4" id="introSection">
-                <div class="card-header bg-info text-white">
-                        Pendahuluan Tes
+           <div id="introSection" style="display: none;">
+                <div class="card-header">
+                    Pendahuluan Tes
                 </div>
                 <div class="card-body">
                     <p class="mb-3">Selamat datang di Tes Morphosis. Tes ini bertujuan untuk memahami gaya berpikir dan preferensi pribadi Anda dalam berbagai situasi.</p>
                     <ul class="mb-3">
-                        <li>Jawablah semua pertanyaan dengan jujur dan spontan.</li>
-                        <li>Tidak ada jawaban benar atau salah.</li>
-                        <li>Setiap pertanyaan memiliki 5 pilihan jawaban dari <strong>Sangat Tidak Sesuai</strong> hingga <strong>Sangat Sesuai</strong>.</li>
-                        <li>Gunakan waktu Anda dengan bijak — tidak perlu terburu-buru.</li>
+                    <li>Jawablah semua pertanyaan dengan jujur dan spontan.</li>
+                    <li>Tidak ada jawaban benar atau salah.</li>
+                    <li>Setiap pertanyaan memiliki 5 pilihan jawaban dari <strong>Sangat Tidak Sesuai</strong> hingga <strong>Sangat Sesuai</strong>.</li>
+                    <li>Gunakan waktu Anda dengan bijak — tidak perlu terburu-buru.</li>
                     </ul>
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="button" class="btn btn-success btn-lg" id="startIntroButton">Saya Mengerti, Lanjut</button>
+
+                    <!-- Contoh Soal -->
+                    <div class="question-item">
+                    <p class="question-text"><strong>Contoh Soal:</strong> Saya merasa nyaman bekerja dengan angka dan data</p>
+                    <div class="btn-group-toggle">
+                        <span class="scale-label left">Sangat Tidak Sesuai</span>
+
+                        <input type="radio" name="exampleQuestion" id="example1">
+                        <label for="example1"></label>
+
+                        <input type="radio" name="exampleQuestion" id="example2">
+                        <label for="example2"></label>
+
+                        <input type="radio" name="exampleQuestion" id="example3" checked>
+                        <label for="example3"></label>
+
+                        <input type="radio" name="exampleQuestion" id="example4">
+                        <label for="example4"></label>
+
+                        <input type="radio" name="exampleQuestion" id="example5">
+                        <label for="example5"></label>
+
+                        <span class="scale-label right">Sangat Sesuai</span>
+                    </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                    <button type="button" id="startIntroButton" class="btn-lg py-3">Saya Mengerti, Lanjut</button>
                     </div>
                 </div>
             </div>
+
+
     
             <!-- Kuesioner Morphosis -->
             <div class="card questionnaire-card" id="questionnaireSection" style="display: none;">
@@ -64,7 +92,7 @@
                 
                 <div id="questionsContainerInner">
                     <div class="question-container" data-category="organizer">
-                        <h3 class="category-title">Organizer (Penyusun)</h3>
+                        <h3 class="category-title"></h3>
                         {% set organizer_question = [
                             "1. Saya merasa nyaman bekerja dengan angka dan data",
                             "2. Saya jarang melupakan hal-hal kecil dalam aktivitas saya",
@@ -96,7 +124,7 @@
                     </div>
                     
                     <div class="question-container" data-category="empath">
-                        <h3 class="category-title">Empath (Empati)</h3>
+                        <h3 class="category-title"></h3>
                         {% set empath_questions = [
                             "8. Saya bisa memahami perasaan orang tanpa mereka mengatakannya",
                             "9. Saya sering terdorong untuk membantu orang lain secara emosional",
@@ -127,7 +155,7 @@
                     </div>
                     
                     <div class="question-container" data-category="analyst">
-                        <h3 class="category-title">Analyst (Analitis)</h3>
+                        <h3 class="category-title"></h3>
                         {% set analyst_questions = [
                             "16. Saya tertarik pada pola dan hubungan sebab-akibat",
                             "17. Saya menganalisis data sebelum mengambil keputusan",
@@ -158,7 +186,7 @@
                     </div>
                     
                     <div class="question-container" data-category="innovator">
-                        <h3 class="category-title">Innovator (Inovator)</h3>
+                        <h3 class="category-title"></h3>
                         {% set innovator_questions = [
                             "24. Saya sering membayangkan skenario yang tidak biasa",
                             "25. Saya menyukai kegiatan mencipta seperti menulis, menggambar, atau bermain musik",
@@ -189,7 +217,7 @@
                     </div>
                     
                     <div class="question-container" data-category="doer">
-                        <h3 class="category-title">Doer (Pelaku)</h3>
+                        <h3 class="category-title"></h3>
                         {% set doer_questions = [
                             "32. Saya cepat mempelajari gerakan atau teknik baru",
                             "33. Saya bisa bekerja dengan tangan atau alat dengan presisi",

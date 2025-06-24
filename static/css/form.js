@@ -1,191 +1,155 @@
+// form.js (Versi Final yang Sudah Diperbaiki)
+
 document.addEventListener('DOMContentLoaded', function() {
+    // --- 1. Deklarasi semua elemen ---
     const personalInfoSection = document.getElementById('personalInfoSection');
     const questionnaireSection = document.getElementById('questionnaireSection');
+    const introSection = document.getElementById('introSection');
+
     const startQuizButton = document.getElementById('startQuizButton');
+    const startIntroButton = document.getElementById('startIntroButton');
+    
     const questionContainers = document.querySelectorAll('.question-container');
     const progressBar = document.getElementById('progressBar');
     const questionStatus = document.getElementById('questionStatus');
+    
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
     const submitButton = document.getElementById('submitButton');
-    const introSection = document.getElementById('introSection');
-    const startIntroButton = document.getElementById('startIntroButton');
 
+    let currentCategoryIndex = 0; // 0: Info Pribadi/Intro, 1-5: Kategori Kuesioner
+    let totalQuestions = 0;
 
-
-    let currentCategoryIndex = 0; // 0 = Personal Info, 1 = Organizer, 2 = Empath, dst.
-    // currentQuestionInCategoryIndex tidak lagi digunakan untuk mengontrol tampilan item individu
-    // tetapi bisa digunakan untuk validasi per pertanyaan saat tombol "Next" ditekan.
-    let currentQuestionInCategoryIndex = 0; // Akan tetap digunakan untuk validasi saat "Next" ditekan
-    let totalQuestions = 0; // Total semua pertanyaan kuesioner
-
-    // Calculate total questions in the questionnaire (excluding personal info)
+    // Hitung total pertanyaan untuk progress bar
     questionContainers.forEach(container => {
         totalQuestions += container.querySelectorAll('.question-item').length;
     });
 
-    // Initial state: show personal info, hide questionnaire
-    personalInfoSection.style.display = 'block';
-    questionnaireSection.style.display = 'none';
+    // --- 2. Fungsi Utama ---
 
-    // Function to update progress bar and question status
     function updateProgressAndStatus() {
-        let currentOverallQuestionNumber = 0; // 1-based index for display
-
-        // Calculate the current overall question number (for the first question of the current category)
-        if (currentCategoryIndex > 0) { // Only calculate if we are in the questionnaire section
+        if (currentCategoryIndex === 0) { // Bagian non-kuesioner
+            progressBar.style.width = '0%';
+            prevButton.style.display = 'none';
+            nextButton.style.display = 'none';
+            submitButton.style.display = 'none';
+        } else { // Bagian Kuesioner
             let questionsBeforeCurrentCategory = 0;
-            for (let i = 0; i < currentCategoryIndex - 1; i++) { // Sum questions in previous categories
+            for (let i = 0; i < currentCategoryIndex - 1; i++) {
                 questionsBeforeCurrentCategory += questionContainers[i].querySelectorAll('.question-item').length;
             }
-            // currentOverallQuestionNumber adalah nomor pertanyaan pertama di kategori saat ini
-            currentOverallQuestionNumber = questionsBeforeCurrentCategory + 1;
-        }
 
-        if (currentCategoryIndex === 0) { // Personal Info section
-            progressBar.style.width = '0%';
-            questionStatus.textContent = 'Isi informasi pribadi Anda';
-            prevButton.style.display = 'none';
-            nextButton.style.display = 'none'; // No "Next" button here, only "Mulai Kuesioner"
-            submitButton.style.display = 'none';
-        } else { // Questionnaire sections
-            // Status harusnya menunjukkan kategori, atau jika ingin tetap per nomor pertanyaan,
-            // harus menyesuaikan agar nomor pertanyaan pertama di kategori yang ditampilkan yang muncul.
-            // Untuk desain "daftar 5 pertanyaan", mungkin lebih cocok menampilkan status per kategori.
-            const activeCategory = questionContainers[currentCategoryIndex - 1];
-            const categoryTitle = activeCategory ? activeCategory.querySelector('.category-title').textContent : '';
-
-            // Menampilkan status berdasarkan kategori
-            questionStatus.textContent = `Kategori: ${categoryTitle}`;
-
-            // Perhitungan progress bar tetap berdasarkan total pertanyaan keseluruhan
-            const progressPercentage = (currentOverallQuestionNumber / totalQuestions) * 100;
+            const progressPercentage = (questionsBeforeCurrentCategory / totalQuestions) * 100;
             progressBar.style.width = `${progressPercentage}%`;
 
-            prevButton.style.display = 'block'; // Show previous button
+            // Tampilkan tombol "Sebelumnya"
+            prevButton.style.display = 'block';
 
-            // Check if it's the last category
+            // Cek apakah ini kategori terakhir untuk menampilkan tombol Kirim
             if (currentCategoryIndex === questionContainers.length) {
-                nextButton.style.display = 'none'; // Hide "Next"
-                submitButton.style.display = 'block'; // Show "Kirim Jawaban"
+                nextButton.style.display = 'none';
+                submitButton.style.display = 'block';
             } else {
-                nextButton.style.display = 'block'; // Show "Next"
-                submitButton.style.display = 'none'; // Hide "Kirim Jawaban"
+                nextButton.style.display = 'block';
+                submitButton.style.display = 'none';
             }
         }
     }
 
-    // Function to display the current category (all questions within it)
     function displayCurrentSection() {
-        // Sembunyikan semua kontainer pertanyaan
-        questionContainers.forEach(container => {
-            container.style.display = 'none';
-            // Tidak perlu lagi menyembunyikan item individu di sini, karena kita akan menampilkan semua
-            // container.querySelectorAll('.question-item').forEach(item => {
-            //     item.style.display = 'none';
-            // });
-        });
+        // Sembunyikan semua bagian utama terlebih dahulu
+        personalInfoSection.style.display = 'none';
+        introSection.style.display = 'none';
+        questionnaireSection.style.display = 'none';
+        questionContainers.forEach(container => container.style.display = 'none');
 
-        if (currentCategoryIndex === 0) { // Display Personal Info
+        if (currentCategoryIndex === 0) {
+            // Ini ditangani oleh event listener tombol, tapi sebagai fallback
             personalInfoSection.style.display = 'block';
-            questionnaireSection.style.display = 'none';
-        } else { // Display Questionnaire sections
-            personalInfoSection.style.display = 'none';
+        } else {
+            // Tampilkan bagian kuesioner dan kategori yang aktif
             questionnaireSection.style.display = 'block';
-
-            // Get the active category
             const activeCategory = questionContainers[currentCategoryIndex - 1];
             if (activeCategory) {
-                activeCategory.style.display = 'block'; // Show the entire category container
-                // Tidak perlu lagi menampilkan item pertanyaan satu per satu di sini,
-                // karena kita ingin semua item di dalam kategori ini muncul.
-                // Jika CSS default Anda sudah men-display question-item, ini cukup.
-                // Jika tidak, pastikan CSS tidak menyembunyikan question-item secara default.
-                // Misal: .question-item { display: block; }
+                activeCategory.style.display = 'block';
             }
         }
-        updateProgressAndStatus(); // Update status and progress after displaying
+        updateProgressAndStatus();
     }
 
-    // Event listener for "Mulai Kuesioner" button
+    // --- 3. Event Listeners ---
+
     startQuizButton.addEventListener('click', function () {
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const birthdateInput = document.getElementById('birthdate');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const birthdateInput = document.getElementById('birthdate');
 
-    if (nameInput.checkValidity() && emailInput.checkValidity() && birthdateInput.checkValidity()) {
-        // Valid, pindah ke introSection dulu
-        personalInfoSection.style.display = 'none';
-        introSection.style.display = 'block'; // Tampilkan pendahuluan
-    } else {
-        // Validasi input form
-        if (!nameInput.checkValidity()) {
-            nameInput.reportValidity();
-        } else if (!emailInput.checkValidity()) {
-            emailInput.reportValidity();
-        } else if (!birthdateInput.checkValidity()) {
-            birthdateInput.reportValidity();
+        if (nameInput.checkValidity() && emailInput.checkValidity() && birthdateInput.checkValidity()) {
+            personalInfoSection.style.display = 'none';
+            introSection.style.display = 'block';
+            updateProgressAndStatus();
+        } else {
+            // Trigger validasi browser bawaan
+            if (!nameInput.checkValidity()) nameInput.reportValidity();
+            else if (!emailInput.checkValidity()) emailInput.reportValidity();
+            else if (!birthdateInput.checkValidity()) birthdateInput.reportValidity();
         }
-    }
     });
 
     startIntroButton.addEventListener('click', function () {
-    introSection.style.display = 'none'; // Sembunyikan intro
-    currentCategoryIndex = 1; // Mulai dari kategori pertama
-    displayCurrentSection(); // Tampilkan questionnaireSection
-});
+        introSection.style.display = 'none';
+        currentCategoryIndex = 1; // Mulai dari kategori pertama
+        displayCurrentSection();
+    });
 
-
-    // Event listener for "Selanjutnya" button
     nextButton.addEventListener('click', function() {
-        // Validate ALL questions in the current displayed category before proceeding
-        let allQuestionsInCurrentCategoryAnswered = true;
+        let allQuestionsAnswered = true;
         const activeCategory = questionContainers[currentCategoryIndex - 1];
 
         if (activeCategory) {
-            const questionItemsInCurrentCategory = activeCategory.querySelectorAll('.question-item');
-            questionItemsInCurrentCategory.forEach(item => {
-                const radioButtons = item.querySelectorAll('input[type="radio"]');
-                let isItemAnswered = false;
-                radioButtons.forEach(radio => {
-                    if (radio.checked) {
-                        isItemAnswered = true;
-                    }
-                });
-                if (!isItemAnswered) {
-                    allQuestionsInCurrentCategoryAnswered = false;
-                    // Opsional: Anda bisa menandai pertanyaan yang belum dijawab di sini
-                    item.style.border = '2px solid red'; // Beri highlight merah pada item yang belum dijawab
+            const questionItems = activeCategory.querySelectorAll('.question-item');
+            questionItems.forEach(item => {
+                const radios = item.querySelectorAll('input[type="radio"]');
+                const isAnswered = Array.from(radios).some(radio => radio.checked);
+                
+                if (!isAnswered) {
+                    allQuestionsAnswered = false;
+                    item.style.border = '2px solid red'; // Beri tanda
                 } else {
-                    item.style.border = '1px solid #e0e0e0'; // Kembalikan border normal jika sudah dijawab
+                    item.style.border = '1px solid #e0e0e0'; // Kembalikan normal
                 }
             });
         }
 
-        if (!allQuestionsInCurrentCategoryAnswered) {
+        if (!allQuestionsAnswered) {
             alert('Silakan jawab semua pertanyaan di kategori ini sebelum melanjutkan.');
-            return; // Hentikan jika ada yang belum dijawab
+            return;
         }
 
-        // Move to the next category
-        currentCategoryIndex++;
-        currentQuestionInCategoryIndex = 0; // Reset for the new category
-
-        displayCurrentSection();
+        // Pindah ke kategori berikutnya jika valid dan belum selesai
+        if (currentCategoryIndex < questionContainers.length) {
+            currentCategoryIndex++;
+            displayCurrentSection();
+        }
     });
 
-    // Event listener for "Sebelumnya" button
     prevButton.addEventListener('click', function() {
-        if (currentCategoryIndex === 1) { // If at the first category, go back to Personal Info
-            currentCategoryIndex = 0;
-            currentQuestionInCategoryIndex = 0; // Reset index
-        } else if (currentCategoryIndex > 1) { // Go to previous category
+        if (currentCategoryIndex > 1) {
+            // Kembali ke kategori sebelumnya
             currentCategoryIndex--;
-            currentQuestionInCategoryIndex = 0; // Reset index for the new category
+            displayCurrentSection();
+        } else if (currentCategoryIndex === 1) {
+            // Jika di kategori pertama, kembali ke halaman intro
+            currentCategoryIndex = 0;
+            questionnaireSection.style.display = 'none';
+            introSection.style.display = 'block';
+            updateProgressAndStatus();
         }
-        displayCurrentSection();
     });
 
-    // Initialize display on load
-    displayCurrentSection();
+    // Inisialisasi tampilan awal saat halaman dimuat
+    personalInfoSection.style.display = 'block';
+    questionnaireSection.style.display = 'none';
+    introSection.style.display = 'none';
+    updateProgressAndStatus();
 });
