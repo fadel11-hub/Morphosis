@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
     const submitButton = document.getElementById('submitButton');
+    const introSection = document.getElementById('introSection');
+    const startIntroButton = document.getElementById('startIntroButton');
+
+
 
     let currentCategoryIndex = 0; // 0 = Personal Info, 1 = Organizer, 2 = Empath, dst.
     // currentQuestionInCategoryIndex tidak lagi digunakan untuk mengontrol tampilan item individu
@@ -104,27 +108,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Event listener for "Mulai Kuesioner" button
-    startQuizButton.addEventListener('click', function() {
-        // Correct way to trigger HTML5 form validation for inputs within personalInfoSection
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const birthdateInput = document.getElementById('birthdate');
+    startQuizButton.addEventListener('click', function () {
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const birthdateInput = document.getElementById('birthdate');
 
-        if (nameInput.checkValidity() && emailInput.checkValidity() && birthdateInput.checkValidity()) {
-            currentCategoryIndex = 1; // Move to the first question category (Organizer)
-            currentQuestionInCategoryIndex = 0; // Reset for the first question in the new category
-            displayCurrentSection();
-        } else {
-            // If validation fails for any input, report validity to show browser's native messages
-            if (!nameInput.checkValidity()) {
-                nameInput.reportValidity();
-            } else if (!emailInput.checkValidity()) {
-                emailInput.reportValidity();
-            } else if (!birthdateInput.checkValidity()) {
-                birthdateInput.reportValidity();
-            }
+    if (nameInput.checkValidity() && emailInput.checkValidity() && birthdateInput.checkValidity()) {
+        // Valid, pindah ke introSection dulu
+        personalInfoSection.style.display = 'none';
+        introSection.style.display = 'block'; // Tampilkan pendahuluan
+    } else {
+        // Validasi input form
+        if (!nameInput.checkValidity()) {
+            nameInput.reportValidity();
+        } else if (!emailInput.checkValidity()) {
+            emailInput.reportValidity();
+        } else if (!birthdateInput.checkValidity()) {
+            birthdateInput.reportValidity();
         }
+    }
     });
+
+    startIntroButton.addEventListener('click', function () {
+    introSection.style.display = 'none'; // Sembunyikan intro
+    currentCategoryIndex = 1; // Mulai dari kategori pertama
+    displayCurrentSection(); // Tampilkan questionnaireSection
+});
+
 
     // Event listener for "Selanjutnya" button
     nextButton.addEventListener('click', function() {

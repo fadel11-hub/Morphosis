@@ -12,6 +12,7 @@
     <div class="container py-4">
         <h1 class="text-center mb-4">Morphosis Questionnaire</h1>
         
+        
         <form method="POST" action="{{ url_for('handle_result') }}" id="morphosisForm">
             <div class="card mb-4" id="personalInfoSection">
                 <div class="card-header bg-primary text-white">
@@ -35,12 +36,31 @@
                     </div>
                 </div>
             </div>
-            
+
+                <!-- Pendahuluan Tes Morphosis -->
+            <div class=" mb-4" id="introSection">
+                <div class="card-header bg-info text-white">
+                        Pendahuluan Tes
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">Selamat datang di Tes Morphosis. Tes ini bertujuan untuk memahami gaya berpikir dan preferensi pribadi Anda dalam berbagai situasi.</p>
+                    <ul class="mb-3">
+                        <li>Jawablah semua pertanyaan dengan jujur dan spontan.</li>
+                        <li>Tidak ada jawaban benar atau salah.</li>
+                        <li>Setiap pertanyaan memiliki 5 pilihan jawaban dari <strong>Sangat Tidak Sesuai</strong> hingga <strong>Sangat Sesuai</strong>.</li>
+                        <li>Gunakan waktu Anda dengan bijak — tidak perlu terburu-buru.</li>
+                    </ul>
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="button" class="btn btn-success btn-lg" id="startIntroButton">Saya Mengerti, Lanjut</button>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Kuesioner Morphosis -->
             <div class="card questionnaire-card" id="questionnaireSection" style="display: none;">
                 <div class="progress-container">
                     <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
                 </div>
-                <p class="question-status" id="questionStatus">Pertanyaan 0 dari 0</p>
                 
                 <div id="questionsContainerInner">
                     <div class="question-container" data-category="organizer">
@@ -61,12 +81,11 @@
                         {% set question_num = base_index + loop.index0 %}
                         <div class="question-item">
                             <p class="question-text">{{ question }}</p>
-                            <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                            {% for i in range(1, 6) %}
-                                <label class="btn btn-outline-primary">
-                                <input type="radio" name="q{{ question_num }}" value="{{ i }}" required> {{ i }}
-                                </label>
-                            {% endfor %}
+                            <div class="btn-group btn-group-toggle">
+                                {% for i in range(1, 6) %}
+                                    <input type="radio" id="q{{ question_num }}_{{ i }}" name="q{{ question_num }}" value="{{ i }}" required>
+                                    <label for="q{{ question_num }}_{{ i }}">{{ i }}</label>
+                                {% endfor %}
                             </div>
                             <div class="scale-labels">
                                 <span>Sangat Tidak Sesuai</span>
@@ -93,12 +112,11 @@
                         {% set question_num = base_index + loop.index0 %}
                         <div class="question-item">
                             <p class="question-text">{{ question }}</p>
-                            <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                            {% for i in range(1, 6) %}
-                                <label class="btn btn-outline-primary">
-                                <input type="radio" name="q{{ question_num }}" value="{{ i }}" required> {{ i }}
-                                </label>
-                            {% endfor %}
+                            <div class="btn-group btn-group-toggle">
+                                {% for i in range(1, 6) %}
+                                    <input type="radio" id="q{{ question_num }}_{{ i }}" name="q{{ question_num }}" value="{{ i }}" required>
+                                    <label for="q{{ question_num }}_{{ i }}">{{ i }}</label>
+                                {% endfor %}
                             </div>
                             <div class="scale-labels">
                                 <span>Sangat Tidak Sesuai</span>
@@ -125,12 +143,11 @@
                         {% set question_num = base_index + loop.index0 %}
                         <div class="question-item">
                             <p class="question-text">{{ question }}</p>
-                            <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                            {% for i in range(1, 6) %}
-                                <label class="btn btn-outline-primary">
-                                <input type="radio" name="q{{ question_num }}" value="{{ i }}" required> {{ i }}
-                                </label>
-                            {% endfor %}
+                            <div class="btn-group btn-group-toggle">
+                                {% for i in range(1, 6) %}
+                                    <input type="radio" id="q{{ question_num }}_{{ i }}" name="q{{ question_num }}" value="{{ i }}" required>
+                                    <label for="q{{ question_num }}_{{ i }}">{{ i }}</label>
+                                {% endfor %}
                             </div>
                             <div class="scale-labels">
                                 <span>Sangat Tidak Sesuai</span>
@@ -157,12 +174,11 @@
                         {% set question_num = base_index + loop.index0 %}
                         <div class="question-item">
                             <p class="question-text">{{ question }}</p>
-                            <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                            {% for i in range(1, 6) %}
-                                <label class="btn btn-outline-primary">
-                                <input type="radio" name="q{{ question_num }}" value="{{ i }}" required> {{ i }}
-                                </label>
-                            {% endfor %}
+                            <div class="btn-group btn-group-toggle">
+                                {% for i in range(1, 6) %}
+                                    <input type="radio" id="q{{ question_num }}_{{ i }}" name="q{{ question_num }}" value="{{ i }}" required>
+                                    <label for="q{{ question_num }}_{{ i }}">{{ i }}</label>
+                                {% endfor %}
                             </div>
                             <div class="scale-labels">
                                 <span>Sangat Tidak Sesuai</span>
@@ -192,12 +208,11 @@
                         {% set question_num = base_index + loop.index0 %}
                         <div class="question-item">
                             <p class="question-text">{{ question }}</p>
-                            <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                            {% for i in range(1, 6) %}
-                                <label class="btn btn-outline-primary">
-                                <input type="radio" name="q{{ question_num }}" value="{{ i }}" required> {{ i }}
-                                </label>
-                            {% endfor %}
+                            <div class="btn-group btn-group-toggle">
+                                {% for i in range(1, 6) %}
+                                    <input type="radio" id="q{{ question_num }}_{{ i }}" name="q{{ question_num }}" value="{{ i }}" required>
+                                    <label for="q{{ question_num }}_{{ i }}">{{ i }}</label>
+                                {% endfor %}
                             </div>
                             <div class="scale-labels">
                                 <span>Sangat Tidak Sesuai</span>
