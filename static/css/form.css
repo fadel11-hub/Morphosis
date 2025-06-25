@@ -310,7 +310,7 @@ body {
 }
 
 #introSection .card-header {
-    background-color: #00cfee;
+    background-color: #007bff;
     color: white;
     font-size: 1.25em;
     font-weight: bold;
@@ -382,4 +382,117 @@ body {
     padding-bottom: 15px;
     font-size: 1.25em;
     border-radius: 10px;
+}
+
+
+@media (max-width: 576px) {
+    .btn-group-toggle {
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 5px;
+        padding: 0 10px;
+    }
+
+    .btn-group-toggle label {
+        width: 32px;
+        height: 32px;
+        margin: 0 2px;
+        border-radius: 50%;
+    }
+
+    .btn-group-toggle input[type="radio"]:checked + label::before {
+        width: 10px;
+        height: 10px;
+    }
+
+    .question-item {
+        padding: 12px;
+    }
+
+    .question-text {
+        font-size: 0.95em;
+        margin-bottom: 10px;
+    }
+
+    .scale-labels {
+        font-size: 0.8em;
+        padding: 0 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .scale-labels span {
+        width: auto;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-nav {
+        width: 100%;
+        max-width: none;
+        font-size: 1em;
+    }
+}
+
+
+@media (max-width: 576px) {
+    /* Contoh soal radio jadi vertikal */
+    #introSection .question-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #introSection .btn-group-toggle {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    #introSection .btn-group-toggle label {
+        width: 26px;
+        height: 26px;
+    }
+
+    #introSection .btn-group-toggle input[type="radio"]:checked + label::before {
+        width: 10px;
+        height: 10px;
+    }
+
+    #introSection .scale-label {
+        display: block;
+        text-align: center;
+        font-size: 0.85em;
+        margin: 4px 0;
+    }
+
+    #introSection .scale-label.left,
+    #introSection .scale-label.right {
+        width: 100%;
+        color: inherit;
+    }
+
+    #introSection .scale-label.left {
+        color: #dc3545;
+    }
+
+    #introSection .scale-label.right {
+        color: #28a745;
+    }
+
+    /* Susun label di atas dan bawah */
+    #introSection .btn-group-toggle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

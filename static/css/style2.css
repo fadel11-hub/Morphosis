@@ -62,14 +62,14 @@ body {
 } */
 
 .logo-gambar {
-  height: 40px;
+  height: 55px;       /* Ukuran standar logo */
+  max-height: auto;   /* Maksimum tinggi agar tidak terlalu besar */
   width: auto;
   display: block;
 }
 
 
-.logo-circle:nth-child(1) { background: #ff6b6b; }
-.logo-circle:nth-child(2) { background: #4ecdc4; }
+.logo-circle:nth-child(1) { background: #ff6b6b; } .logo-circle:nth-child(2) { background: #4ecdc4; }
 .logo-circle:nth-child(3) { background: #45b7d1; }
 
 .logo-text {
